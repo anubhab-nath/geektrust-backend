@@ -13,16 +13,37 @@ public class Station {
         this.name = name;
     }
 
-    public Map<PassengerType, Integer> getPassengerTypeCount() {
-        return passengerTypeCount;
+    public String getName() {
+        return name;
     }
 
-    public void updateDiscount(int discount) {
-        this.discount = discount;
+    public void calculateTravelCharge(Passenger passenger) {
+        MetroCard card = passenger.getCard();
+        PassengerType passengerType = passenger.getPassengerType();
+
+        int travelCharge = passengerType.getStdTravelCharge();
+        this.passengerTypeCount.merge(passengerType, 1, Integer::sum);
+        card.updateUsage(1);
+
+        if(isReturnJourney(card.getUsage())) {
+            travelCharge /= 2;
+            this.discount += travelCharge;
+        }
+
+        int balance = card.getBalance();
+        balance -= travelCharge;
+        if(balance < 0) {
+            int extra = -1 * balance;
+            double serviceFee = extra * StationKeywords.STATION_SERVICE_FEE;
+            travelCharge += serviceFee;
+        }
+
+        this.totalCharges += travelCharge;
+        card.updateBalance(balance);
     }
 
-    public void updateTotalCharges(int totalCharges) {
-        this.totalCharges += totalCharges;
+    private boolean isReturnJourney(int cardUsage) {
+        return cardUsage % 2 == 0;
     }
 
     public void summary() {

@@ -3,10 +3,10 @@ package com.example.geektrust;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MetroCardRegister {
+public class MetroCardRegistry {
     private final Map<String, MetroCard> cards = new HashMap<>();
 
-    public void add(String cardId, MetroCard card) {
+    public void addCard(String cardId, MetroCard card) {
         cards.put(cardId, card);
     }
 

@@ -2,11 +2,11 @@ package com.example.geektrust;
 
 public class MetroCard {
     private int balance;
-    private int cardUsage;
+    private int usage;
 
     public MetroCard(int balance) {
         this.balance = balance;
-        this.cardUsage = 0;
+        this.usage = 0;
     }
 
     public int getBalance() {
@@ -15,14 +15,16 @@ public class MetroCard {
 
     public void updateBalance(int balance) {
         this.balance += balance;
+        if(balance < 0)
+            this.balance = 0;
     }
 
-    public int getCardUsage() {
-        return cardUsage;
+    public int getUsage() {
+        return usage;
     }
 
-    public void updateCardUsage(int cardUsage) {
-        this.cardUsage += cardUsage;
+    public void updateUsage(int usage) {
+        this.usage += usage;
     }
 
     @Override
@@ -33,6 +35,6 @@ public class MetroCard {
 
         MetroCard card = (MetroCard) obj;
         return this.balance == card.balance &&
-                this.cardUsage == card.cardUsage;
+                this.usage == card.usage;
     }
 }

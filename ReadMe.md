@@ -19,7 +19,8 @@ Internally both the scripts run the following commands
 
  # Running the code for multiple test cases
 
- Please fill `input1.txt` and `input2.txt` with the input commands and use those files in `run.bat` or `run.sh`. Replace `java -jar target/geektrust.jar sample_input/input1.txt` with `java -jar target/geektrust.jar sample_input/input2.txt` to run the test case from the second file. 
+ Please fill `input1.txt` and `input2.txt` with the input commands and use those files in `run.bat` or `run.sh`. 
+ Replace `java -jar target/geektrust.jar sample_input/input1.txt` with `java -jar target/geektrust.jar sample_input/input2.txt` to run the test case from the second file. 
 
  # How to execute the unit tests
 
